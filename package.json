@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "entrega3",
+  "description": "entrega",
   "main": "app.js",
   "type": "module",
   "scripts": {
