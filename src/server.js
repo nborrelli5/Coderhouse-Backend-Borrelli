@@ -1,7 +1,7 @@
 import express from 'express'
 import productsRouter   from './routes/products.router.js'
 import cartRouter       from './routes/cart.router.js'
-import viewsRouter      from './routes/views.router.js'
+import viewsRouter      from './routes/index.js'
 import { __dirname } from './utils.js'
 import {uploader} from './multer.js'
 import handlebars from 'express-handlebars'
