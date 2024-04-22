@@ -1,7 +1,33 @@
 <main>
-    <h1>HOLA MUNDO HANDLE</h1>
-    <div>
-        Description<input type="text" name="description" id="description">
+    <h1>Products Creation</h1>
+    <form action="">
+
+        <ul>
+            <li>
+                Title<input type="text" name="title" id="title">
+            </li>
+            <li>
+                Description<input type="text" name="description" id="description">
+            </li>
+            <li>
+                Code<input type="text" name="code" id="code">
+            </li>
+            <li>
+                Price<input type="number" name="price" id="price">
+            </li>
+            <li>
+                Stock<input type="number" name="stock" id="stock">
+            </li>
+            <li>
+                Category<input type="text" name="category" id="category">
+            </li>
+            <li>
+                Thumbnails<input type="text" name="thumbnails" id="thumbnails">
+            </li>
+        </ul>
+    </form>
+    <div class="button">
+        <input type="submit" id="submitButton" name="submitButton" value="CREATE PRODUCT"></input>
     </div>
     <div>
         <ul id="items">
@@ -9,50 +35,4 @@
     </div>
 </main>
 <script src="/socket.io/socket.io.js"></script>
-{{!-- <script src="/asset/js/home.js"></script>    --}}
-<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-wordpress-admin/wordpress-admin.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-<script>
-
-const socket = io()
-let product
-
-Swal.fire({
-    title:'Creating New Product',
-    text:'Insert Title of the Product',
-    input:'text',
-    inputValidator: value => {
-        return !value
-    },
-    allowOutsideClick:false
-})
-.then(result => {
-    product = result.value
-})
-
-    let description = document.querySelector ('#description')
-    description.addEventListener('keyup', evt => {
-    if (evt.key === 'Enter'){
-        if(description.value.trim().length > 0){
-            socket.emit('description',{product, description:description.value})
-            description.value=''
-        }
-    }
-})
-
-    socket.on('newItem', data => {
-    let log = document.getElementById('items')
-
-    let products = ''
-    data.forEach(product => {
-        products += `<li>Product:${product.product}<br> Description: ${product.description}</li><br>`
-    })
-    log.innerHTML = products
-    })
-
-
-</script>
-
-
-
-
+<script src="/asset/js/home.js"></script>

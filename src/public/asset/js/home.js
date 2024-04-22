@@ -1,35 +1,26 @@
-// const socket = io()
-// let product
+const socket = io()
+let product
 
-// Swal.fire({
-//     title:'Creating New Product',
-//     text:'Insert Title of the Product',
-//     input:'text',
-//     inputValidator: value => {
-//         return !value
-//     },
-//     allowOutsideClick:false
-// })
-// .then(result => {
-//     product = result.value
-// })
+let submitButton=document.getElementById("submitButton");
 
-//     let description = document.querySelector ('#description')
-//     description.addEventListener('keyup', evt => {
-//     if (evt.key === 'Enter'){
-//         if(description.value.trim().length > 0){
-//             socket.emit('description',{product, description:description.value})
-//             description.value=''
-//         }
-//     }
-// })
-
-//     socket.on('newItem', data => {
-//     let log = document.getElementById('items')
-
-//     let products = ''
-//     data.forEach(product => {
-//         products += `<li>Product:${product.product}<br> Description: ${product.description}</li><br>`
-//     })
-//     log.innerHTML = products
-//     })
+submitButton.onclick = () => {
+    socket.emit('newProduct',{title:title.value,description:description.value,
+            code:code.value,price:price.value,stock:stock.value,category:category.value,
+                    thumbnails:thumbnails.value})
+}
+socket.on('newItem', data => {
+    let log = document.getElementById('items')
+    let products=''
+    data.forEach(product => {
+        products += `<div class="card">
+                        <li>Title:${product.title}</li><br>
+                        <li>Description: ${product.description}</li><br>
+                        <li>Code:${product.code}</li><br>
+                        <li>Price:${product.price}</li><br>
+                        <li>Stock:${product.stock}</li><br>
+                        <li>Category:${product.category}</li>
+                        <br><li>Thumbnails:${product.thumbnails}</li><br>
+                    </div>`
+        })
+        log.innerHTML = products
+    })

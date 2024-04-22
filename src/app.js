@@ -27,6 +27,7 @@ const io = new Server(httpServer)
         //     }
 
         //     chatSocket(io)}
+
 // MIDDLEWARE //
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -65,7 +66,7 @@ app.use((error, req, res, next) => {
             io.on('connection',socket =>{
                 console.log('Client Connected');
 
-                socket.on('description',data=>{
+                socket.on('newProduct',data=>{
                     products.push(data)
                     io.emit('newItem', products)
                 })
